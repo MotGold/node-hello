@@ -28,8 +28,7 @@ node {
          }
     }
     stage('deploy with helm') {
-        sh 'helm template deploy/helm/.'
-        sh "helm upgrade -i  node-hello  --set image.tag=\"${commit_id}\" deploy/helm/."
+        sh "helm upgrade -i node-hello deploy/helm/."
     }
 }
 
