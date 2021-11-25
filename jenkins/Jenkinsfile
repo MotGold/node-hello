@@ -27,6 +27,10 @@ node {
            docker.build("motgold/compie-jenkins-1").push("${commit_id}")
          }
     }
+    stage('deploy with helm') {
+        sh 'helm template deploy/helm/.'
+        sh "helm upgrade -i  node-hello  --set image.tag=\"${commit_id}\" deploy/helm/."
+    }
 }
 
 
